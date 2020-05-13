@@ -4,11 +4,6 @@ import java.util.List;
 
 public final class MobItemLayout implements Cloneable {
 
-    /**
-     * itemIds are not supported in all versions, use {@link MobItemLayout#itemName} instead
-     */
-
-
     private String itemName;
     private int subId;
     private String display;
