@@ -65,10 +65,24 @@ If you would like to contribute to this repository, feel free to fork the repo a
 </repositories>
 
 <dependencies>
-    <!-- RootProject -->
+    <!-- Plugin Bukkit/Spigot -->
     <dependency>
         <groupId>eu.cloudnetservice</groupId>
-        <artifactId>MobSystem</artifactId>
+        <artifactId>mob-plugin</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <scope>provided</scope>
+    </dependency>
+    <!-- Module CloudNet -->
+    <dependency>
+        <groupId>eu.cloudnetservice</groupId>
+        <artifactId>mob-module</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <scope>provided</scope>
+    </dependency>
+    <!-- Mob Core -->
+    <dependency>
+        <groupId>eu.cloudnetservice</groupId>
+        <artifactId>mob-core</artifactId>
         <version>1.0-SNAPSHOT</version>
         <scope>provided</scope>
     </dependency>
@@ -83,6 +97,12 @@ repositories {
     }
 }
 dependencies {
-    compileOnly group: 'eu.cloudnetservice', name: 'MobSystem', version: '1.0-SNAPSHOT'
+    //Mob Plugin - Bukkit/Spigot
+    compileOnly group: 'eu.cloudnetservice', name: 'mob-plugin', version: '1.0-SNAPSHOT'
+    //CloudNet Module
+    compileOnly group: 'eu.cloudnetservice', name: 'mob-module', version: '1.0-SNAPSHOT'
+    //Mob Core
+    compileOnly group: 'eu.cloudnetservice', name: 'mob-core', version: '1.0-SNAPSHOT'
+
 }
 ```
