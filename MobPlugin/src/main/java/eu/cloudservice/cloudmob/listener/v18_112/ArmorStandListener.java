@@ -17,7 +17,7 @@ public final class ArmorStandListener implements Listener {
         }
     }
 
-    @EventHandler
+    /*@EventHandler
     public void handle(ItemDespawnEvent e) {
         Mob mob = null;
         for (final Mob mobImpl : MobSelector.getInstance().getMobs().values()) {
@@ -29,5 +29,5 @@ public final class ArmorStandListener implements Listener {
         if (mob != null) {
             e.setCancelled(true);
         }
-    }
+    }*/
 }
