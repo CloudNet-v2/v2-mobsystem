@@ -14,7 +14,11 @@
 
     <repositories>
         <repository>
-            <id>cloudnet-repo</id>
+            <id>cloudnet-repo-snapshots</id>
+            <url>https://repo.cloudnetservice.eu/repository/snapshots</url>
+        </repository>
+        <repository>
+            <id>cloudnet-repo-releases</id>
             <url>https://repo.cloudnetservice.eu/repository/releases</url>
         </repository>
         <repository>
@@ -42,7 +46,12 @@
             <version>${dependency.cloudnet.version}</version>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-bootstrap</artifactId>
+            <version>${dependency.bungeecord.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
@@ -53,21 +62,7 @@
                     <groupId>com.google.guava</groupId>
                     <artifactId>guava</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>net.md-5</groupId>
-                    <artifactId>bungeecord-chat</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.code.gson</groupId>
-                    <artifactId>gson</artifactId>
-                </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>net.md-5</groupId>
-            <artifactId>bungeecord-bootstrap</artifactId>
-            <version>${dependency.bungeecord.version}</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -86,18 +81,18 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!--<relocations>
+                    <relocations>
                         <relocation>
-                            <!- Fixes issues with missing TypeToken.getParameterized method
+                            <!-- Fixes issues with missing TypeToken.getParameterized method -->
                             <pattern>com.google.gson.reflect.TypeToken</pattern>
                             <shadedPattern>eu.cloudnetservice.relocation.gson.reflect.TypeToken</shadedPattern>
                         </relocation>
                         <relocation>
-                            <!- Fixes issues with deprecated JsonParser methods
+                            <!-- Fixes issues with deprecated JsonParser methods -->
                             <pattern>com.google.gson.JsonParser</pattern>
                             <shadedPattern>eu.cloudnetservice.relocation.gson.JsonParser</shadedPattern>
                         </relocation>
-                    </relocations>-->
+                    </relocations>
                 </configuration>
             </plugin>
         </plugins>
