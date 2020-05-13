@@ -20,6 +20,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.world.ChunkLoadEvent;
+import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.event.world.WorldSaveEvent;
 
 import java.util.HashMap;
@@ -138,5 +140,15 @@ public final class MobListener implements Listener {
                 }
             });
         }, 40);
+    }
+
+    @EventHandler
+    public void onLoadChunk(ChunkLoadEvent event) {
+        MobSelector.getInstance().removeAndSpawn(event.getChunk());
+    }
+
+    @EventHandler
+    public void onUnloadChunk(ChunkUnloadEvent event) {
+        MobSelector.getInstance().addMobToQueueAndDespawn(event.getChunk());
     }
 }

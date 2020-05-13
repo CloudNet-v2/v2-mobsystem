@@ -16,10 +16,7 @@ import eu.cloudservice.cloudmob.listener.MobListener;
 import eu.cloudservice.cloudmob.listener.v18_112.ArmorStandListener;
 import eu.cloudservice.cloudmob.util.ItemStackBuilder;
 import eu.cloudservice.cloudmob.util.ReflectionUtil;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -37,6 +34,9 @@ public final class MobSelector {
     private final Map<String, ServerInfo> servers = new ConcurrentHashMap<>();
     private Map<UUID, Mob> mobs;
     private MobConfig mobConfig;
+    private Map<Chunk,MobConfig> mobConfigQueue = new ConcurrentHashMap();
+    private Map<Chunk,ServerMob> serverMobQueue = new ConcurrentHashMap();
+    private Map<Chunk,UUID> mobUuidQueue = new ConcurrentHashMap();
 
     public MobSelector(MobConfig mobConfig) {
         instance = this;
@@ -61,7 +61,8 @@ public final class MobSelector {
         Location location = toLocation(serverMob.getPosition());
 
         if (!location.getChunk().isLoaded()) {
-            location.getChunk().load();
+            addMobToQueue(location.getChunk(),mobConfig,uuid,serverMob);
+            return null;
         }
 
         Entity entity = location.getWorld().spawnEntity(
@@ -117,6 +118,46 @@ public final class MobSelector {
             new BukkitMobInitEvent(mob)
         );
         return mob;
+    }
+    public void addMobToQueueAndDespawn(final Chunk chunk) {
+        final Optional<Mob> first = this.mobs.values().stream().filter(mob -> Arrays.stream(chunk.getEntities()).allMatch(entity -> entity.getUniqueId().equals(
+            mob.getEntity().getUniqueId()))).findFirst();
+        if (first.isPresent()) {
+            Mob mob = first.get();
+            if (mob.getDisplayMessage() != null) {
+                Entity entity = mob.getDisplayMessage();
+                if (entity.getPassenger() != null) {
+                    entity.getPassenger().remove();
+                }
+                mob.getDisplayMessage().remove();
+            }
+            mob.getEntity().remove();
+            addMobToQueue(chunk,mobConfig,mob.getUniqueId(),mob.getMob());
+            this.mobs.remove(mob.getUniqueId());
+        }
+    }
+
+    public void addMobToQueue(final Chunk chunk,final MobConfig mobConfig, final UUID uuid, final ServerMob serverMob) {
+        if (!(this.mobUuidQueue.containsKey(chunk) || this.mobConfigQueue.containsKey(chunk) || this.serverMobQueue.containsKey(chunk))) {
+            this.mobUuidQueue.put(chunk, uuid);
+            this.mobConfigQueue.put(chunk,mobConfig);
+            this.serverMobQueue.put(chunk,serverMob);
+            System.out.println("Add mob to spawning queue if chunk loaded");
+        }
+    }
+    public void removeAndSpawn(final Chunk chunk) {
+        if ((this.mobUuidQueue.containsKey(chunk) || this.mobConfigQueue.containsKey(chunk) || this.serverMobQueue.containsKey(chunk))) {
+            final UUID uuid = this.mobUuidQueue.get(chunk);
+            final MobConfig mobConfig = this.mobConfigQueue.get(chunk);
+            final ServerMob serverMob = this.serverMobQueue.get(chunk);
+            final Mob mob = spawnMob(mobConfig, uuid, serverMob);
+            if (mob != null) {
+                this.mobs.put(mob.getUniqueId(),mob);
+                this.mobUuidQueue.remove(chunk);
+                this.mobConfigQueue.remove(chunk);
+                this.serverMobQueue.remove(chunk);
+            }
+        }
     }
 
     public static Location toLocation(MobPosition position) {
