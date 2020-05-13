@@ -41,6 +41,7 @@ pipeline {
     stage('Archive') {
       steps {
         archiveArtifacts allowEmptyArchive: true, artifacts: '**/target/Mob*.jar', fingerprint: true, onlyIfSuccessful: true
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'MobSystem.zip', fingerprint: true, onlyIfSuccessful: true
       }
     }
   }
