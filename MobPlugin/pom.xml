@@ -42,7 +42,12 @@
             <version>${dependency.cloudnet.version}</version>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-bootstrap</artifactId>
+            <version>${dependency.bungeecord.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
