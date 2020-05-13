@@ -1,0 +1,3 @@
+name: CloudMob
+main: eu.cloudnetservice.cloudmob.MobPlugin
+version: ${mob.version}
