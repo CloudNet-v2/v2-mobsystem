@@ -32,7 +32,7 @@ public class MobDatabase extends DatabaseUsable {
         final Document mobDocument = database.getDocument("server_selector_mobs");
         Document document = mobDocument
             .getDocument("mobs")
-            .append(serverMob.getUniqueId().toString(), serverMob);
+            .append(serverMob.getUniqueId().toString(), Document.GSON.toJsonTree(serverMob));
         mobDocument.append("server_selector_mobs", document);
         database.insert(mobDocument);
     }
@@ -59,7 +59,7 @@ public class MobDatabase extends DatabaseUsable {
 
         if (injectable) {
             Document document = database.getDocument("server_selector_mobs");
-            document.append("mobs", mobMap);
+            document.append("mobs", Document.GSON.toJsonTree(mobMap));
             database.insert(document);
         }
 
