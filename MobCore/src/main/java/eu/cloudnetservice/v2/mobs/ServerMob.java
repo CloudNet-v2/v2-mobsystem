@@ -15,7 +15,7 @@ public class ServerMob {
     protected String type;
     protected String targetGroup;
     protected String itemName;
-    protected Boolean autoJoin;
+    protected boolean autoJoin;
     protected MobPosition position;
     protected String displayMessage;
 
@@ -25,7 +25,7 @@ public class ServerMob {
                      String type,
                      String targetGroup,
                      String itemName,
-                     Boolean autoJoin,
+                     boolean autoJoin,
                      MobPosition position,
                      String displayMessage) {
         this.uniqueId = uniqueId;
@@ -87,11 +87,11 @@ public class ServerMob {
         this.targetGroup = targetGroup;
     }
 
-    public Boolean getAutoJoin() {
+    public boolean getAutoJoin() {
         return autoJoin;
     }
 
-    public void setAutoJoin(Boolean autoJoin) {
+    public void setAutoJoin(boolean autoJoin) {
         this.autoJoin = autoJoin;
     }
 
