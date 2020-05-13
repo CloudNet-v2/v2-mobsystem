@@ -14,11 +14,6 @@ public class ServerMob {
     protected String name;
     protected String type;
     protected String targetGroup;
-    /**
-     * itemIds are not supported in all versions, use {@link ServerMob#itemName} instead
-     */
-    @Deprecated
-    protected Integer itemId;
     protected String itemName;
     protected Boolean autoJoin;
     protected MobPosition position;
@@ -29,7 +24,6 @@ public class ServerMob {
                      String name,
                      String type,
                      String targetGroup,
-                     Integer itemId,
                      String itemName,
                      Boolean autoJoin,
                      MobPosition position,
@@ -39,7 +33,6 @@ public class ServerMob {
         this.name = name;
         this.type = type;
         this.targetGroup = targetGroup;
-        this.itemId = itemId;
         this.itemName = itemName;
         this.autoJoin = autoJoin;
         this.position = position;
@@ -100,14 +93,6 @@ public class ServerMob {
 
     public void setAutoJoin(Boolean autoJoin) {
         this.autoJoin = autoJoin;
-    }
-
-    public Integer getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Integer itemId) {
-        this.itemId = itemId;
     }
 
     public MobPosition getPosition() {

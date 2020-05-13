@@ -87,14 +87,12 @@ public final class MobSelector {
 
         updateCustom(serverMob, armorStand);
 
-        if (armorStand.getPassenger() == null && serverMob.getItemId() != null) {
-            Material material = ItemStackBuilder.getMaterialIgnoreVersion(serverMob.getItemName(), serverMob.getItemId());
-            if (material != null) {
-                Item item = location.getWorld().dropItem(armorStand.getLocation(), new ItemStack(material));
-                item.setTicksLived(Integer.MAX_VALUE);
-                item.setPickupDelay(Integer.MAX_VALUE);
-                armorStand.setPassenger(item);
-            }
+        if (armorStand.getPassenger() == null && serverMob.getItemName() != null) {
+            Material material = Material.matchMaterial(serverMob.getItemName());
+            Item item = location.getWorld().dropItem(armorStand.getLocation(), new ItemStack(material));
+            item.setTicksLived(Integer.MAX_VALUE);
+            item.setPickupDelay(Integer.MAX_VALUE);
+            armorStand.setPassenger(item);
         }
 
         if (entity instanceof Villager) {
@@ -191,7 +189,7 @@ public final class MobSelector {
     }
 
     private ItemStack transform(MobItemLayout mobItemLayout) {
-        Material material = ItemStackBuilder.getMaterialIgnoreVersion(mobItemLayout.getItemName(), mobItemLayout.getItemId());
+        Material material = Material.matchMaterial(mobItemLayout.getItemName());
         if (material == null) {
             return null;
         } else {
@@ -293,7 +291,7 @@ public final class MobSelector {
     }
 
     private ItemStack transform(MobItemLayout mobItemLayout, ServerInfo serverInfo) {
-        Material material = ItemStackBuilder.getMaterialIgnoreVersion(mobItemLayout.getItemName(), mobItemLayout.getItemId());
+        Material material = Material.matchMaterial(mobItemLayout.getItemName());
         if (material == null) {
             return null;
         } else {

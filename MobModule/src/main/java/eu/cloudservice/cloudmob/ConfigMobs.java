@@ -18,7 +18,7 @@ public class ConfigMobs implements ILoader<MobConfig> {
     public ConfigMobs() {
         if (!Files.exists(path)) {
             final List<String> lore = Collections.singletonList(NetworkUtils.SPACE_STRING);
-            final MobItemLayout defaultLayout = new MobItemLayout(160,
+            final MobItemLayout defaultLayout = new MobItemLayout(
                 "BLACK_STAINED_GLASS_PANE",
                 15,
                 NetworkUtils.SPACE_STRING,
@@ -31,7 +31,7 @@ public class ConfigMobs implements ILoader<MobConfig> {
                 "mobConfig",
                 new MobConfig(54,
                     10,
-                    new MobItemLayout(388,
+                    new MobItemLayout(
                         "EMERALD",
                         0,
                         "§6%server%",

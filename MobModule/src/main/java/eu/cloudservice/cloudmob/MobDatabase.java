@@ -51,8 +51,8 @@ public class MobDatabase extends DatabaseUsable {
         Map<UUID, ServerMob> mobMap = database.getDocument("server_selector_mobs").getObject("mobs", MAP_UUID_SERVERMOB_TYPE);
 
         for (ServerMob serverMob : mobMap.values()) {
-            if (serverMob.getItemId() == null) {
-                serverMob.setItemId(138);
+            if (serverMob.getItemName() == null) {
+                serverMob.setItemName("beacon");
                 injectable = true;
             }
             if (serverMob.getAutoJoin() == null) {
