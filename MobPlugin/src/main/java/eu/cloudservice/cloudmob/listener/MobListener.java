@@ -12,8 +12,10 @@ import eu.cloudservice.cloudmob.Mob;
 import eu.cloudservice.cloudmob.MobSelector;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -89,9 +91,8 @@ public final class MobListener implements Listener {
 
         if (mobSelector.getInventories().contains(e.getInventory()) && e.getCurrentItem() != null && e.getSlot() == e.getRawSlot()) {
             e.setCancelled(true);
-            if (ItemStackBuilder.getMaterialIgnoreVersion(mobSelector.getMobConfig().getItemLayout().getItemName(),
-                mobSelector.getMobConfig().getItemLayout().getItemId()) == e.getCurrentItem()
-                                                                            .getType()) {
+            if (Material.matchMaterial(mobSelector.getMobConfig().getItemLayout().getItemName()) == e.getCurrentItem()
+                                                                                       .getType()) {
                 Mob mob = mobSelector.findByInventory(e.getInventory());
                 if (mob.getServerPosition().containsKey(e.getSlot())) {
                     if (CloudAPI.getInstance().getServerId().equalsIgnoreCase(mob.getServerPosition().get(e.getSlot()))) {
@@ -109,7 +110,7 @@ public final class MobListener implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onSave(WorldSaveEvent e) {
         // Create a simple copy of the original mobs
         Map<UUID, ServerMob> mobMap = new HashMap<>();
