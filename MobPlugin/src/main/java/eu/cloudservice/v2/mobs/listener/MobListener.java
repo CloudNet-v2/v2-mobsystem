@@ -42,7 +42,7 @@ public final class MobListener implements Listener {
         if (mobImpl != null) {
             e.setCancelled(true);
             if (!CloudAPI.getInstance().getServerGroupData(mobImpl.getMob().getTargetGroup()).isMaintenance()) {
-                if (mobImpl.getMob().getAutoJoin() != null && mobImpl.getMob().getAutoJoin()) {
+                if (mobImpl.getMob().getAutoJoin()) {
                     ByteArrayDataOutput byteArrayDataOutput = ByteStreams.newDataOutput();
                     byteArrayDataOutput.writeUTF("Connect");
 

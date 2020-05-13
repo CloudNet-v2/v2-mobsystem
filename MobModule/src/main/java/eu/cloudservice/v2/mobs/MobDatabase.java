@@ -55,10 +55,6 @@ public class MobDatabase extends DatabaseUsable {
                 serverMob.setItemName("beacon");
                 injectable = true;
             }
-            if (serverMob.getAutoJoin() == null) {
-                serverMob.setAutoJoin(false);
-                injectable = true;
-            }
         }
 
         if (injectable) {
