@@ -14,8 +14,12 @@
 
     <repositories>
         <repository>
-            <id>cloudnet-repo</id>
+            <id>cloudnet-repo-snapshots</id>
             <url>https://repo.cloudnetservice.eu/repository/snapshots</url>
+        </repository>
+        <repository>
+            <id>cloudnet-repo-releases</id>
+            <url>https://repo.cloudnetservice.eu/repository/releases</url>
         </repository>
         <repository>
             <id>spigot-repo</id>
