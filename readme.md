@@ -1,14 +1,4 @@
-[![Build Status](https://ci.cloudnetservice.eu/buildStatus/icon?job=CloudNetService/v2-mobsystem/master)](https://ci.cloudnetservice.eu/job/CloudNetService/job/v2-mobsystem/master)
-[![star this repo](http://githubbadges.com/star.svg?user=CloudNetService&repo=v2-mobsystem)](https://github.com/CloudNetService/v2-mobsystem)
-[![fork this repo](http://githubbadges.com/fork.svg?user=CloudNetService&repo=v2-mobsystem)](https://github.com/CloudNetService/v2-mobsystem/fork)
-[![GitHub license](https://img.shields.io/github/license/CloudNetService/v2-mobsystem.svg)](https://github.com/CloudNetService/v2-mobsystem/blob/master/LICENSE)
-
-[![DepShield Badge](https://depshield.sonatype.org/badges/CloudNetService/v2-mobsystem/depshield.svg)](https://depshield.github.io)
-[![GitHub issues](https://img.shields.io/github/issues/CloudNetService/v2-mobsystem.svg)](https://github.com/CloudNetService/v2-mobsystem/issues)
-[![GitHub contributors](https://img.shields.io/github/contributors/CloudNetService/v2-mobsystem.svg)](https://github.com/CloudNetService/v2-mobsystem/graphs/contributors)
-[![Github All Releases](https://img.shields.io/github/downloads/CloudNetService/v2-mobsystem/total.svg)](https://github.com/CloudNetService/v2-mobsystem/releases)
-[![GitHub release](https://img.shields.io/github/release/CloudNetService/v2-mobsystem.svg)](https://github.com/CloudNetService/v2-mobsystem/releases)
-
+# This project is archived! Please consider using [CloudNet v3](https://github.com/CloudNetService/CloudNet-v3). The CloudNet v2 repository can be found [here](https://github.com/CloudNetService/CloudNet).
 
 
 # Mob System | The Cloud Network Environment Technology 2
